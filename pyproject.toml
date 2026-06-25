@@ -1,0 +1,46 @@
+# pyproject.toml — PLACEHOLDER (we will fill this together in the next step).
+#
+# This will declare the package (src/fleurs_asr), Python >=3.10, the dependency
+# stack (datasets, transformers, jiwer, torch, ...), and the ruff/pytest config.
+#
+# TODO: define [project], [build-system], [tool.ruff], [tool.pytest.ini_options].
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend="setuptools.build_meta"
+
+[project]
+name = "fleurs-asr"
+version = "0.0.0"
+description = "experiment with fleurs-asr dataset"
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+    "datasets",
+    "transformers",
+    "accelerate",
+    "evaluate",
+    "jiwer",
+    "torch",
+    "torchaudio",
+    "librosa",
+    "soundfile",
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "rich",
+    "typer",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

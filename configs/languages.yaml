@@ -1,0 +1,4 @@
+# languages.yaml — PLACEHOLDER
+# Verify config names with get_dataset_config_names("google/fleurs") first.
+# Will list starter languages (yo_ng, ha_ng, wo_sn, ps_af) with name + linguistic notes.
+# TODO: fill in.

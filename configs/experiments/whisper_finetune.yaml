@@ -1,0 +1,3 @@
+# whisper_finetune.yaml — PLACEHOLDER
+# task: finetune_asr; train/dev/test splits, training args, seeds.
+# TODO: fill in (deferred until zero-shot works).

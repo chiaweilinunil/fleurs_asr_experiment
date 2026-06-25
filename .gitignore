@@ -1,0 +1,24 @@
+data/*
+!data/README.md
+!data/.gitkeep
+
+results/predictions/*.jsonl
+results/checkpoints/
+results/models/
+*.ckpt
+*.pt
+*.safetensors
+
+.cache/
+__pycache__/
+.ipynb_checkpoints/
+wandb/
+mlruns/
+
+# Python
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
