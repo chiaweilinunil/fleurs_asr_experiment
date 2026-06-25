@@ -6,5 +6,11 @@ Responsibilities (to be implemented):
 
 Keep this thin; decoding logic lives in ``decoding.py``.
 """
+from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
-# TODO: implement load_asr_model(name) returning (model, processor).
+def load_asr_model(model_name: str):
+    model = WhisperForConditionalGeneration.from_pretrained(model_name)
+    processor = WhisperProcessor.from_pretrained(model_name)
+    model.eval()
+    return model, processor
+

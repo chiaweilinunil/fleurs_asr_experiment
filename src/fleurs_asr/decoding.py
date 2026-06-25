@@ -6,5 +6,11 @@ Responsibilities (to be implemented):
 
 Decoding settings must be recorded alongside predictions for reproducibility.
 """
+import torch
 
-# TODO: implement transcribe(model, processor, audio, **decoding_kwargs).
+def transcribe(model, processor, audio_array, sampling_rate=16000, language=None, task="transcribe", num_beams=1) -> str:
+    with torch.no_grad():
+        inputs = processor(audio_array, sampling_rate=sampling_rate, return_tensors="pt")
+        token_ids = model.generate(inputs.input_features, num_beams=num_beams)
+        text = processor.batch_decode(token_ids, skip_special_tokens=True)[0]
+    return text 
