@@ -1,0 +1,1 @@
+{"experiment_name": "zero_shot_yo_ng_openai/whisper-tiny", "language": "yo_ng", "model": "openai/whisper-tiny", "split": "test", "normalization_profile": "wer_standard", "num_examples": 831, "wer": 1.7565727349535312, "cer": 1.4032645468575926, "date": "2026-06-26T17:09:38.916894"}

@@ -1,10 +1,14 @@
-# Makefile — PLACEHOLDER (we will fill this together).
-#
-# Planned targets (see CLAUDE.md):
-#   setup, test, lint, list-languages, inspect, zero-shot, evaluate
-#
-# Example target shape:
-#   zero-shot:
-#   	python scripts/run_zero_shot.py --language $(LANGUAGE) --model $(MODEL)
-#
-# TODO: implement the targets above as thin calls to scripts/.
+
+zero-shot:
+	python scripts/run_zero_shot.py --language $(LANGUAGE) --model $(MODEL)
+test:
+	pytest
+
+lint:
+	ruff check .
+
+list-languages:
+	python scripts/list_fleurs_languages.py
+
+inspect:
+	python scripts/inspect_dataset.py --language $(LANGUAGE)
