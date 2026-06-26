@@ -125,6 +125,39 @@ Zero-shot, `test` split, `wer_standard` normalization. Lower is better.
 > WER above 1.0 is expected for unsupported languages: with many insertions and
 > substitutions, total edits can exceed the reference word count.
 
+## Error analysis (Yoruba zero-shot)
+
+Run with:
+
+```bash
+python scripts/analyze_errors.py --predictions results/predictions/<file>.jsonl --num 5
+```
+
+Distribution over the 831-utterance Yoruba test set (`wer_standard`):
+
+| Metric | Mean | Median |
+|--------|-----:|-------:|
+| WER    | 1.77 |  1.00  |
+| CER    | 1.42 |  0.66  |
+
+Catastrophic utterances (WER > 1.0): **248 / 831 ≈ 30%**.
+
+Three findings:
+
+1. **Heavy right-skew.** The median WER is 1.00 but the mean is 1.77 — a minority of
+   catastrophic utterances inflate the corpus number. Reporting both exposes the skew.
+2. **Hallucinated repetition loops dominate the tail.** The worst utterances are not
+   noisy transcripts but wrong-language hallucinations that loop, e.g. the model emits
+   fluent English (`"...the city of the city of the city..."`), Portuguese
+   (`"porém porém porém..."`), or French (`"...de la fin de la fin..."`). These runaway
+   insertions push WER as high as ~26. This is a known Whisper failure on
+   out-of-distribution audio and points to fixes worth testing: forcing
+   `language="yoruba"`/`task="transcribe"`, or decoding with a repetition penalty.
+3. **CER < WER, especially at the median** (0.66 vs 1.00). When the model stays in a
+   phonetic-transcription mode it gets characters roughly right while word boundaries
+   and orthography (notably tone marks) are wrong — so CER tells a more forgiving and,
+   for this language, more informative story than WER alone.
+
 ## Linguistic notes
 
 ### Yoruba (`yo_ng`)
